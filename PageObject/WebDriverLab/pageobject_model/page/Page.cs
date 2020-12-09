@@ -15,7 +15,7 @@ namespace WebDriverLab.pageobject_model.page
     {
         protected IWebDriver driver;
         protected abstract Page openPage();
-        protected const int WAIT_TIMEOUT_SECONDS = 10;
+        protected const int WAIT_TIMEOUT_SECONDS = 30;
         protected const string HOMEPAGE_URL = @"https://www.razer.com/";
 
         protected Page(IWebDriver driver)
@@ -24,13 +24,13 @@ namespace WebDriverLab.pageobject_model.page
         }
         protected void WaitAnswerFromPage()
         {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            new WebDriverWait(driver, TimeSpan.FromSeconds(WAIT_TIMEOUT_SECONDS))
           .Until(CustomConditions.JQueryAJAXsCompleted(driver));
 
         }
         protected void WaitLoadedPage()
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(WAIT_TIMEOUT_SECONDS);
 
         }
     }

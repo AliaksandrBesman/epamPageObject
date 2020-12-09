@@ -37,9 +37,8 @@ namespace WebDriverLab.pageobject_model.page
         {
             IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
             jse.ExecuteScript("arguments[0].click()", targetProduct);
-            Thread.Sleep(5000);
             WaitAnswerFromPage();
-            WaitLoadedPage();
+            WaitLoadedCurrentPage();
             PageFactory.InitElements(driver, this);
             return this;
         }
@@ -53,6 +52,24 @@ namespace WebDriverLab.pageobject_model.page
             WaitAnswerFromPage();
             WaitLoadedPage();
             return new CartPage(driver);
+        }
+
+        private void WaitLoadedCurrentPage()
+        {
+            while(true)
+            {
+                try
+                {
+                    IWebElement viewCartButton = new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(ExpectedConditions.ElementToBeClickable(By.XPath(viewCartButtonPrefix)));
+                    if (viewCartButton != null)
+                        return;
+                }
+                catch
+                {
+
+                }
+            }
+           
         }
     }
 }
