@@ -14,7 +14,6 @@ namespace WebDriverLab.pageobject_model.page
     class RazerHomePage : Page
     {
 
-
         public RazerHomePage(IWebDriver driver) : base(driver)
         {
 

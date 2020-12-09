@@ -23,14 +23,11 @@ namespace WebDriverLab.pageobject_model.page
         public AddedProductPage(IWebDriver driver, IWebElement targetProduct) : base(driver)
         {
             this.targetProduct = targetProduct;
-
         }
 
         public CartPage ViewCart()
         {
-            //IWebElement viewCartButton = new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(ExpectedConditions.ElementToBeClickable(By.XPath(viewCartButtonPrefix)));
             return new CartPage(driver, viewCartButton);
-
         }
 
         protected override Page openPage()
